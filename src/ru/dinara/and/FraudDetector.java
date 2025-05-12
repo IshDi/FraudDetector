@@ -2,35 +2,15 @@ package ru.dinara.and;
 
 public class FraudDetector {
     public boolean isFraud(Transaction transaction) {
-        return isFraudRule1(transaction)
-                || isFraudRule2(transaction)
-                || isFraudRule3(transaction)
-                || isFraudRule4(transaction)
-                || isFraudRule5(transaction);
-
-    }
-
-    private boolean isFraudRule1(Transaction transaction) {
-        Trader trader = transaction.getTrader();
-        return trader.getFullName().equals("Pokemon");
-    }
-
-    private boolean isFraudRule2(Transaction transaction) {
-        return transaction.getAmount() > 1000000;
-    }
-
-    private boolean isFraudRule3(Transaction transaction) {
-        Trader trader = transaction.getTrader();
-        return trader.getCity().equals("Sydney");
-    }
-
-    private boolean isFraudRule4(Transaction transaction) {
-        Trader trader = transaction.getTrader();
-        return trader.getCountry().equals("Jamaica");
-    }
-
-    private boolean isFraudRule5(Transaction transaction) {
-        Trader trader = transaction.getTrader();
-        return trader.getCountry().equals("Germany") && transaction.getAmount() > 1000;
+        FraudRule1 fraudRule1 = new FraudRule1();
+        FraudRule2 fraudRule2 = new FraudRule2();
+        FraudRule3 fraudRule3 = new FraudRule3();
+        FraudRule4 fraudRule4 = new FraudRule4();
+        FraudRule5 fraudRule5 = new FraudRule5();
+        return fraudRule1.isFraud(transaction)
+                || fraudRule2.isFraud(transaction)
+                || fraudRule3.isFraud(transaction)
+                || fraudRule4.isFraud(transaction)
+                || fraudRule5.isFraud(transaction);
     }
 }
